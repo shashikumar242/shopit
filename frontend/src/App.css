@@ -113,6 +113,21 @@ nav {
   font-size: 1.2rem;
   color: #fdcc0d;
 }
+.rating-outer {
+  position: relative;
+  display: inline-block;
+  font-size: 20px;
+  color: #ccc; /* grey background stars */
+}
+
+.rating-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #f8e825; /* yellow stars */
+}
 
 #no_of_reviews {
   font-size: 0.9rem;
