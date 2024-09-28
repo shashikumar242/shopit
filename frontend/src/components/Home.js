@@ -1,4 +1,5 @@
-import React, { Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
+import Pagination from "rc-pagination";
 import { toast } from "react-toastify";
 import MetaData from "./layout/MetaData";
 import Product from "./product/Product";
@@ -6,8 +7,13 @@ import Loader from "./layout/Loader";
 import useProducts from "../hooks/products/useProducts";
 
 const Home = () => {
-  const { products, isLoading, isError, error } = useProducts();
+  const [currentPage, setCurrentPage] = useState(1);
 
+  const { products, isLoading, isError, error } = useProducts(currentPage);
+
+  const setCurrentPageNo = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   if (isLoading) {
     return <Loader />;
@@ -29,6 +35,23 @@ const Home = () => {
             ))}
         </div>
       </section>
+
+      {products?.resPerPage <= products?.productsCount && (
+        <div className="d-flex justify-content-center mt-5">
+          <Pagination
+            current={currentPage}
+            pageSize={products?.resPerPage}
+            total={products?.productsCount}
+            onChange={setCurrentPageNo}
+            prevIcon={"Prev"}
+            nextIcon={"Next"}
+            className="page-link"
+            showTotal={(total, range) =>
+              `Showing ${range[0]}-${range[1]} of ${total}`
+            }
+          />
+        </div>
+      )}
     </Fragment>
   );
 };
