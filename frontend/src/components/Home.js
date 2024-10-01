@@ -1,12 +1,10 @@
 
-
-
 import React, { useState, Fragment, useEffect } from "react";
 import Pagination from "rc-pagination";
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { toast } from "react-toastify";
-import { useParams ,useLocation} from "react-router-dom";
+import { useParams} from "react-router-dom";
 import MetaData from "./layout/MetaData";
 import Product from "./product/Product";
 import Loader from "./layout/Loader";
